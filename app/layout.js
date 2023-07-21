@@ -1,5 +1,5 @@
 import "./globals.css";
-import Sidebar from "@/components/sidenav";
+
 // import { Inter } from 'next/font/google'
 
 // const inter = Inter({ subsets: ['latin'] })
@@ -17,10 +17,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="">
-        <div className="flex">
-          <Sidebar />
           <main className="flex-grow">{children}</main>
-        </div>
       </body>
     </html>
   );

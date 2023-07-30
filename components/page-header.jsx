@@ -1,9 +1,14 @@
-import React from 'react'
-
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import Modal from "@/components/modal";
 const PageHeader = ({action,name}) => {
+   const [modalOpen, setModalOpen] = useState(false);
+
+   const trigger = useRef(null);
+   const modal = useRef(null);
   return (
     
-<section className=" py-[70px]">
+<section className=" pt-5 lg:pt-[40px]">
    <div className="mx-auto px-4 sm:container">
       <div
          className="border-stroke items-center justify-between border-b border-black md:flex"
@@ -18,8 +23,9 @@ const PageHeader = ({action,name}) => {
             </p>
          </div>
          <div className="mb-6">
-            <button onClick={action}
-               className="bg-primary inline-flex items-center justify-center whitespace-nowrap rounded py-[10px] px-5 text-sm font-medium text-white hover:bg-opacity-90"
+            <button  ref={trigger}
+          onClick={() => setModalOpen(true)}
+               className="bg-primary font-Poiret inline-flex items-center justify-center whitespace-nowrap rounded py-[10px] px-5 text-sm font-medium text-white hover:bg-opacity-90"
                >
                Add New {name}
                <span className="pl-2">
@@ -54,6 +60,13 @@ const PageHeader = ({action,name}) => {
          </div>
       </div>
    </div>
+   <Modal
+          setModalOpen={setModalOpen}
+          trigger={trigger}
+          modal={modal}
+          modalOpen={modalOpen}
+          name={name}
+        />
 </section>
  
   )

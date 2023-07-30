@@ -26,7 +26,7 @@ const SideClosed = ({ handleIsNavOpen }) => {
             <ul className="space-y-2 border-t border-gray-100 pt-4">
               <li>
                 <a
-                  href="/pages/projects"
+                  href="/pages/project"
                   className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg

@@ -1,13 +1,18 @@
 import React from "react";
 import Edit from "../../../components/icons/edit";
 import Delete from "../../../components/icons/delete";
+import AnnualReport from "@/components/annual-report";
 
 const page = async () => {
   const res = await fetch("https://iseea.onrender.com/api/v1/numbers", {
     cache: "no-store",
   });
   const data = await res.json();
-  console.log(data.impactNumbers[0])
+  const annualres = await fetch("https://iseea.onrender.com/api/v1/reports", {
+    cache: "no-store",
+  });
+  const annualdata = await annualres.json();
+ 
   const action = () => {
     console.log("modal here!!!");
   };
@@ -34,35 +39,35 @@ const page = async () => {
           <Edit />
           <Delete />
         </div>
-        <div class="container my-9 mx-auto md:px-6">
-          <section class="mb-14 text-center">
-            <div class="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
-              <div class="mb-12 md:mb-0">
-                <h2 class="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
+        <div className="container my-9 mx-auto md:px-6">
+          <section className="mb-14 text-center">
+            <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+              <div className="mb-12 md:mb-0">
+                <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                   {data.impactNumbers[0].money}+
                 </h2>
-                <h5 class="mb-4 text-lg text-white font-medium">Naira</h5>
-                <p class="text-neutral-500 dark:text-neutral-300">
+                <h5 className="mb-4 text-lg text-white font-medium">Naira</h5>
+                <p className="text-neutral-500 dark:text-neutral-300">
                   Has been raised so far
                 </p>
               </div>
 
-              <div class="mb-12 md:mb-0">
-                <h2 class="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
+              <div className="mb-12 md:mb-0">
+                <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                 {data.impactNumbers[0].children}+
                 </h2>
-                <h5 class="mb-4 text-lg text-white font-medium">Children</h5>
-                <p class="text-neutral-500 dark:text-neutral-300">
+                <h5 className="mb-4 text-lg text-white font-medium">Children</h5>
+                <p className="text-neutral-500 dark:text-neutral-300">
                   Have been impacted so far through projects and donations
                 </p>
               </div>
 
-              <div class="mb-12 md:mb-0">
-                <h2 class="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
+              <div className="mb-12 md:mb-0">
+                <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                 {data.impactNumbers[0].projects}+
                 </h2>
-                <h5 class="mb-4 text-lg text-white font-medium">Projects</h5>
-                <p class="text-neutral-500 dark:text-neutral-300">
+                <h5 className="mb-4 text-lg text-white font-medium">Projects</h5>
+                <p className="text-neutral-500 dark:text-neutral-300">
                   Have been initiated and we will continue to expand our reach
                   as the need arises
                 </p>
@@ -70,6 +75,12 @@ const page = async () => {
             </div>
           </section>
         </div>
+      </div>
+      <div className="flex flex-wrap">
+        {annualdata.reports.map(( report,index)=>{
+          return <AnnualReport name={report.name} report={report.reportFile} key={index}  />
+        })}
+      
       </div>
     </div>
   );

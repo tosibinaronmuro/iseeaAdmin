@@ -9,7 +9,7 @@ const Project = ({ projectName, projectDetails, projectsPhoto }) => {
       className="flex flex-col mb-10   mt-3 "
     >
       <div className=" bg-slate-600     ">
-        <Image
+        {/* <Image
           src={projectsPhoto}
           alt="team photo"
           width={0}
@@ -20,7 +20,12 @@ const Project = ({ projectName, projectDetails, projectsPhoto }) => {
             height: "auto",
           }}
           priority
-        />
+        /> */}
+        <img
+    alt="Developer"
+    src={projectsPhoto}
+    className="  h-full w-full object-cover "
+  />
       </div>
       <div className=" flex bg-primary justify-between text-2xl text-black">
         <p className=" p-2   font-bold   py-5 pl-10 pr-[15%]">{projectName}</p>

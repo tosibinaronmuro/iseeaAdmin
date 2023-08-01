@@ -34,8 +34,8 @@ const page = async () => {
           <Edit />
           <Delete />
         </div>
-        <div class="container my-14 mx-auto md:px-6">
-          <section class="mb-32 text-center">
+        <div class="container my-9 mx-auto md:px-6">
+          <section class="mb-14 text-center">
             <div class="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
               <div class="mb-12 md:mb-0">
                 <h2 class="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">

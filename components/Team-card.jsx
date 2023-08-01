@@ -7,7 +7,7 @@ const TeamMember = ({photo,name,position,bio}) => {
     <div   className="group relative block bg-tertiary min-w-[70%] max-w-[71%] min-h-[45vh] lg:min-h-auto  md:min-w-[40%]  h-auto   md:max-w-[45% ] md:max-w-[45%] lg:w-[30%]">
   <img
     alt="Developer"
-    src={`https://iseea.onrender.com/uploads/team-members/${photo}`}
+    src={photo}
     className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
   />
 

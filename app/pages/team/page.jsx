@@ -27,7 +27,7 @@ const page = async () => {
                 return (
                   <TeamMember
                     name={member.name}
-                    photo={member.memberImage}
+                    photo={`https://iseea.onrender.com/uploads/team-members/${member.memberImage}`}
                     bio={member.bio}
                     position={member.position}
                     key={member.id}
@@ -48,7 +48,7 @@ const page = async () => {
                 return (
                   <TeamMember
                     name={member.name}
-                    photo={member.photo}
+                    photo={`https://iseea.onrender.com/uploads/team-members/${member.memberImage}`}
                     bio={member.bio}
                     position={member.position}
                     key={member.id}

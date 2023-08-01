@@ -51,11 +51,11 @@ const Modal = ({setModalOpen,trigger,modal, modalOpen, name }) => {
               <form action="#" className="my-8 grid grid-cols-6 gap-6">
         
           
-        <div className="col-span-10">
+        {/* <div className="col-span-10">
           <label htmlFor="number" className="block text-sm font-medium text-gray-700">
             Number
           </label>
-          {/* should be decided in the backend?? */}
+   
         
           <input
             type="text"
@@ -64,14 +64,14 @@ const Modal = ({setModalOpen,trigger,modal, modalOpen, name }) => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
             "   required
           />
-        </div>
+        </div> */}
         
         <div className="col-span-10  ">
           <label
             htmlFor="story"
-            className="block text-sm font-medium text-gray-700"
+            className="flex justify-start p-2 text-sm font-medium text-gray-700"
           >
-            story
+            Story
           </label>
         
           <textarea 

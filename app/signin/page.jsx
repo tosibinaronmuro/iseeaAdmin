@@ -141,7 +141,7 @@ const page = () => {
 
               <div className="flex flex-col space-y-4 col-span-10  ">
                 <p className="mt-4 flex justify-center text-sm text-gray-500 sm:mt-0">
-                  <a href="/signup" className="text-blue-700 mx-2 underline">
+                  <a href="/password/forgot-password" className="text-blue-700 mx-2 underline">
                     Forgot password?
                   </a>
                   .

@@ -18,8 +18,7 @@ const PageHeader = ({action,name}) => {
                {name}s
             </h2>
             <p className="text-body-color font-Poiret text-sm font-medium">
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-               ultrices lectus sem.
+               Admins can Add New {name}s, Update/Edit {name}s and Delete {name} in this section
             </p>
          </div>
          <div className="mb-6">

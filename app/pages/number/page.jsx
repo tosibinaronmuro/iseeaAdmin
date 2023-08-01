@@ -27,8 +27,7 @@ const page = async () => {
                 Numbers
               </h2>
               <p className="text-body-color font-Poiret text-sm font-medium">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                ultrices lectus sem.
+                Admins can only Update data here
               </p>
             </div>
           </div>
@@ -38,7 +37,7 @@ const page = async () => {
       <div className="bg-black rounded-xl mx-14 p-4 flex flex-col my-3">
         <div className="flex justify-end space-x-3">
           <Edit />
-          <Delete />
+          {/* <Delete /> */}
         </div>
         <div className="container my-9 mx-auto md:px-6">
           <section className="mb-6 text-center">

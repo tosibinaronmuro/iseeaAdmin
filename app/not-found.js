@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const Error404 = () => {
 const router=useRouter()
   return (
-    <div className="grid h-screen px-4 bg-white place-content-center">
+    <div className="grid h-screen px-4  place-content-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 768"

@@ -2,6 +2,7 @@ import React from "react";
 import Edit from "../../../components/icons/edit";
 import Delete from "../../../components/icons/delete";
 import AnnualReport from "@/components/annual-report";
+import PageHeader from "@/components/page-header";
 
 const page = async () => {
   const res = await fetch("https://iseea.onrender.com/api/v1/numbers", {
@@ -18,7 +19,7 @@ const page = async () => {
   };
   return (
     <div>
-      <section className=" pt-5 lg:pt-[40px]">
+      <section className=" pt-5 lg:pt-[30px]">
         <div className="mx-auto px-4 sm:container">
           <div className="border-stroke items-center justify-between border-b border-black md:flex">
             <div className="mb-6 w-full">
@@ -40,9 +41,9 @@ const page = async () => {
           <Delete />
         </div>
         <div className="container my-9 mx-auto md:px-6">
-          <section className="mb-14 text-center">
+          <section className="mb-6 text-center">
             <div className="grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
-              <div className="mb-12 md:mb-0">
+              <div className="mb-6 md:mb-0">
                 <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                   {data.impactNumbers[0].money}+
                 </h2>
@@ -52,7 +53,7 @@ const page = async () => {
                 </p>
               </div>
 
-              <div className="mb-12 md:mb-0">
+              <div className="mb-6 md:mb-0">
                 <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                 {data.impactNumbers[0].children}+
                 </h2>
@@ -62,7 +63,7 @@ const page = async () => {
                 </p>
               </div>
 
-              <div className="mb-12 md:mb-0">
+              <div className="mb-6 md:mb-0">
                 <h2 className="display-5 mb-4 text-4xl font-bold text-primary dark:text-primary-400">
                 {data.impactNumbers[0].projects}+
                 </h2>
@@ -76,11 +77,14 @@ const page = async () => {
           </section>
         </div>
       </div>
-      <div className="flex flex-wrap">
+      <div>
+        <PageHeader name={"Report"}/>
+      <div className="flex flex-wrap justify-center">
         {annualdata.reports.map(( report,index)=>{
           return <AnnualReport name={report.name} report={report.reportFile} key={index}  />
         })}
       
+      </div>
       </div>
     </div>
   );

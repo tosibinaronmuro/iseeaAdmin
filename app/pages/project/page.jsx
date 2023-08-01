@@ -21,7 +21,7 @@ const page = async () => {
                 key={index}
                 projectDetails={project.content}
                 projectName={project.name}
-                projectsPhoto={`https://iseea.onrender.com/uploads/projects/${project.projectImage}`}
+                projectsPhoto={project.projectImage}
               />
             );
           })}

@@ -1,4 +1,6 @@
+"use client"
 import "./globals.css";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 // import { Inter } from 'next/font/google'
 
@@ -11,13 +13,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const queryClient = new QueryClient();
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="">
-          <main className="flex-grow">{children}</main>
+      <QueryClientProvider client={queryClient}>
+      <main className="flex-grow">{children}</main>
+      </QueryClientProvider>
+         
       </body>
     </html>
   );

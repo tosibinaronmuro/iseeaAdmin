@@ -40,7 +40,7 @@ const page = () => {
               "
               required
             />
-            <div class="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
+            <div className="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
               {showPassword ? (
                 <svg
                   onClick={togglePasswordVisibility}
@@ -81,7 +81,7 @@ const page = () => {
               "
               required
             />
-            <div class="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
+            <div className="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
               {showConfirmedPassword ? (
                 <svg
                   onClick={toggleConfirmedPasswordVisibility}

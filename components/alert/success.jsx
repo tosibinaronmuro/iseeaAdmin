@@ -1,6 +1,6 @@
 import React from "react";
 
-const SuccessAlert = ({name }) => {
+const SuccessAlert = ({name,message }) => {
   return (
     <div
       id="alert-2"
@@ -19,7 +19,7 @@ const SuccessAlert = ({name }) => {
         </svg>
         <span className="sr-only">Info</span>
         <div className="ml-3 flex justify-center items-center text-sm font-medium">
-          welcome back, <span className="capitalize ml-1">{name}</span>
+          {message} <span className="capitalize ml-1">{name}</span>
         </div>
       </div>
       {/* <button

@@ -8,12 +8,12 @@ import SuccessAlert from "@/components/alert/success";
 import { useRouter } from "next/navigation";
 
 const page = () => {
-  const router=useRouter()
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const [isError, setisError] = useState(false);
   const [isSuccessful, setisSuccessful] = useState(false);
-  const [Error, setError] = useState("");
+  const [error, setError] = useState("");
   const [Name, setName] = useState("");
   const loginMutation = async ({ email, password }) => {
     const response = await axios.post(
@@ -33,17 +33,16 @@ const page = () => {
   const passwordRef = useRef();
   const mutation = useMutation(loginMutation, {
     onSuccess: (data) => {
-      // Handle the response data  i.e redirect, show messages
       emailRef.current.value = "";
       passwordRef.current.value = "";
-      setisSuccessful(true)
-      setName(data.user.name)
-       if(data.token){
-        router.push('/pages/number')
-       }
+      setisSuccessful(true);
+      console.log(data)
+      setName(data.user.name);
+      if (data.token) {
+        router.push("/pages/number");
+      }
     },
     onError: (error) => {
-      // Handle any errors that occurred during the API call
       if (error.response && error.response.data) {
         console.error("Error:", error.response.data);
         emailRef.current.value = "";
@@ -64,14 +63,16 @@ const page = () => {
     const password = passwordRef.current.value;
     mutation.mutate({ email, password });
   };
-   
+
   useEffect(() => {
-    setTimeout(() => {
-      if (Error) {
+    let timeout;
+    if (error) {
+      timeout = setTimeout(() => {
         setisError(false);
-      }
-    }, 5000);
-  }, [Error]);
+      }, 5000);
+    }
+    return () => clearTimeout(timeout);
+  }, [error]);
 
   return (
     <section className="bg-white min-h-screen">
@@ -217,13 +218,10 @@ const page = () => {
                   </p>
                 </div>
               </div>
-              {isError ? (
-                <ErrorAlert Error={Error} />
-              ) : (
-                ""
+              {isError && <ErrorAlert error={error} message={" , Try again"} />}
+              {isSuccessful && (
+                <SuccessAlert message={"welcome back,"} name={Name} />
               )}
-              {isSuccessful && <SuccessAlert name={Name}/>}
-
             </form>
           </div>
         </main>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorAlert = ({Error }) => {
+const ErrorAlert = ({error,message }) => {
   return (
     <div
       id="alert-2"
@@ -19,7 +19,7 @@ const ErrorAlert = ({Error }) => {
         </svg>
         <span className="sr-only">Info</span>
         <div className="ml-3 flex justify-center items-center text-sm font-medium">
-          {Error}, Try again
+          {error} {message}
         </div>
       </div>
       {/* <button

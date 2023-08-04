@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from "@/components/sidenav";
 
 const layout = ({ children }) => {
+  // isAuthenticated logic here
   return (
     <div className="">
         <div className="flex">

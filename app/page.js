@@ -42,7 +42,7 @@ const signup = () => {
 
   const mutation = useMutation(registerMutation, {
     onSuccess: (data) => {
-      
+      // create loading spinner
       emailRef.current.value = "";
       nameRef.current.value = "";
       passwordRef.current.value = "";

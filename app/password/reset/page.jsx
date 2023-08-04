@@ -19,8 +19,8 @@ const page = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const passwordResetMutation = async ({ password  }) => {
-    const url = `https://iseea.onrender.com/api/v1/auth/reset-password `;
+  const passwordResetMutation = async ({ password, token, id  }) => {
+    const url = `https://iseea.onrender.com/api/v1/auth/reset-password?token=${token}&id=${id}`;
 
     const response = await axios.post(
       url,
@@ -59,7 +59,7 @@ const page = () => {
         setisError(true);
       } else {
         console.error("Error:", error.message);
-        setError(error.message);
+        setError(error.msg);
         setisError(true);
       }
     },
@@ -84,7 +84,10 @@ const page = () => {
     if (passwordRef.current.value === confirmPasswordRef.current.value) {
       setPasswordMatch(true);
       const password = passwordRef.current.value;
-      await passwordResetMutation({ password  });
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const id = urlParams.get("id");
+       mutation.mutate({  password, token, id  });
     } else {
       setPasswordMatch(false);
       passwordRef.current.value = "";
@@ -96,7 +99,7 @@ const page = () => {
     let timeout;
     if (error || !passwordMatch) {
       timeout = setTimeout(() => {
-        setError(false);
+        setisError(false);
         setPasswordMatch(true);
       }, 5000);
     }

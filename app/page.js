@@ -96,7 +96,7 @@ const signup = () => {
     let timeout;
     if (error || !passwordMatch) {
       timeout = setTimeout(() => {
-        setError(false);
+        setisError(false);
         setPasswordMatch(true)
       }, 5000);
     }

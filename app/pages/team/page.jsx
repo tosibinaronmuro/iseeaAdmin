@@ -16,7 +16,7 @@ const page = async () => {
   return (
     <div>
       <PageHeader name={"Team Member"} />
-      <div className=" pb-8 pt-14  pl-[10%] pr-[10%] ">
+      <div className=" pb-8 pt-14  px-[5%] ">
         <div className="flex flex-col space-y-8">
           <p className="font-garmond text-xl font-bold lg:text-3xl ">
           THE MANAGEMENT TEAM

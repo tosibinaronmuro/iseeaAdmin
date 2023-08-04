@@ -4,7 +4,7 @@ import Delete from "./icons/delete";
 
 const Interventions = ({number,story }) => {
   return (
-    <div className="rounded-t-xl   bg-black p-2  mt-5 w-[80%] md:w-[60%] lg:w-[40%]   lg:p-8">
+    <div className="rounded-t-xl   bg-black p-2  mt-5 mx-1 w-[100%] md:w-[60%] lg:w-[40%]   lg:p-8">
       <div className="flex justify-end space-x-3">
         <Edit  />
         <Delete/>

@@ -1,22 +1,18 @@
 import React from "react";
-import Edit from "../../../components/icons/edit";
-import Delete from "../../../components/icons/delete";
+import Edit from "../../../components/icons/edit"; 
 import AnnualReport from "@/components/annual-report";
 import PageHeader from "@/components/page-header";
 
 const page = async () => {
+   // refactor to react-query and axios and include header + token gotten from state management for post,delete and create requests
   const res = await fetch("https://iseea.onrender.com/api/v1/numbers", {
     cache: "no-store",
   });
   const data = await res.json();
-  const annualres = await fetch("https://iseea.onrender.com/api/v1/reports", {
+  const annualReport = await fetch("https://iseea.onrender.com/api/v1/reports", {
     cache: "no-store",
   });
-  const annualdata = await annualres.json();
- 
-  const action = () => {
-    console.log("modal here!!!");
-  };
+  const annualReportdata = await annualReport.json();
   return (
     <div>
       <section className=" pt-5 lg:pt-[30px]">
@@ -37,7 +33,6 @@ const page = async () => {
       <div className="bg-black rounded-xl mx-14 p-4 flex flex-col my-3">
         <div className="flex justify-end space-x-3">
           <Edit />
-          {/* <Delete /> */}
         </div>
         <div className="container my-9 mx-auto md:px-6">
           <section className="mb-6 text-center">
@@ -79,7 +74,7 @@ const page = async () => {
       <div>
         <PageHeader name={"Report"}/>
       <div className="flex flex-wrap justify-center">
-        {annualdata.reports.map(( report,index)=>{
+        {annualReportdata.reports.map(( report,index)=>{
           return <AnnualReport name={report.name} report={report.reportFile} key={index}  />
         })}
       

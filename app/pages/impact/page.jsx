@@ -3,16 +3,11 @@ import React from "react";
 import Impact from "@/components/impact";
 
 const page = async () => {
+  // refactor to react-query and axios and include header + token gotten from state management for post,delete and create requests
   const res = await fetch("https://iseea.onrender.com/api/v1/impacts", {
     cache: "no-store",
   });
-  const data = await res.json();
-  console.log(data, typeof data.blogs);
-  // https://blogging-haven-api.onrender.com/api/v1/blogs
-
-  const action = () => {
-    console.log("modal here!!!");
-  };
+  const data = await res.json(); 
   return (
     <div>
       <PageHeader name={"Impact"} />

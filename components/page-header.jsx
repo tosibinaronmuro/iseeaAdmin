@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "@/components/modal";
-const PageHeader = ({action,name}) => {
+const PageHeader = ({ name}) => {
    const [modalOpen, setModalOpen] = useState(false);
 
    const trigger = useRef(null);

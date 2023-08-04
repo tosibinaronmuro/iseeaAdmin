@@ -43,6 +43,7 @@ const signup = () => {
   const mutation = useMutation(registerMutation, {
     onSuccess: (data) => {
       // create loading spinner
+      //  store token in state management state and possibly frontend session storage?
       emailRef.current.value = "";
       nameRef.current.value = "";
       passwordRef.current.value = "";

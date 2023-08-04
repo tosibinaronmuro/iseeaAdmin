@@ -1,6 +1,9 @@
 "use client";
-import PageHeader from "@/components/page-header";
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
+import { useMutation } from "react-query";
+import ErrorAlert from "@/components/alert/error";
+import SuccessAlert from "@/components/alert/success";
 import { useRouter } from "next/navigation";
 
 const page = () => {
@@ -10,9 +13,104 @@ const page = () => {
   const [showConfirmedPassword, setshowConfirmedPassword] = useState(false);
   const toggleConfirmedPasswordVisibility = () =>
     setshowConfirmedPassword(!showConfirmedPassword);
+  const [isError, setisError] = useState(false);
+  const [isSuccessful, setisSuccessful] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(true); // refactor this to be under isError
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const passwordResetMutation = async ({ password  }) => {
+    const url = `https://iseea.onrender.com/api/v1/auth/reset-password `;
+
+    const response = await axios.post(
+      url,
+      { password },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  };
+
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  const mutation = useMutation(passwordResetMutation, {
+    onSuccess: (data) => {
+      // create loading spinner
+      //  store token in state management state and possibly frontend session storage?
+      passwordRef.current.value = "";
+      confirmPasswordRef.current.value = "";
+      setisSuccessful(true);
+      console.log(data);
+      setMessage(data.msg);
+    },
+    onError: (error) => {
+      if (error.response && error.response.data) {
+        console.error("Error:", error.response.data);
+        passwordRef.current.value = "";
+        confirmPasswordRef.current.value = "";
+        setError(error.response.data.msg);
+        setisError(true);
+      } else {
+        console.error("Error:", error.message);
+        setError(error.message);
+        setisError(true);
+      }
+    },
+  });
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (passwordRef.current.value === confirmPasswordRef.current.value) {
+  //     // Passwords match, you can proceed with your logic (e.g., submit form)
+  //     setPasswordMatch(true);
+  //     const password = passwordRef.current.value;
+  //     mutation.mutate({   password });
+  //   } else {
+  //     // Passwords don't match, show an error message
+  //     setPasswordMatch(false);
+  //     passwordRef.current.value = "";
+  //     confirmPasswordRef.current.value="";
+  //   }
+  // };
+  const handleSubmit = async (e ) => {
+    e.preventDefault();
+    if (passwordRef.current.value === confirmPasswordRef.current.value) {
+      setPasswordMatch(true);
+      const password = passwordRef.current.value;
+      await passwordResetMutation({ password  });
+    } else {
+      setPasswordMatch(false);
+      passwordRef.current.value = "";
+      confirmPasswordRef.current.value = "";
+    }
+  };
+
+  useEffect(() => {
+    let timeout;
+    if (error || !passwordMatch) {
+      timeout = setTimeout(() => {
+        setError(false);
+        setPasswordMatch(true);
+      }, 5000);
+    }
+    if (isSuccessful) {
+      timeout = setTimeout(() => {
+        router.push("/signin");
+      }, 5000);
+    }
+    return () => clearTimeout(timeout);
+  }, [error, passwordMatch]);
+
   return (
     <div className="h-screen w-full flex justify-center items-center">
-      <div className="flex flex-col m-auto bg-white w-1/3 rounded-2xl justify-center items-center p-4 ">
+      <div className="flex flex-col m-auto bg-white w-full mx-3  lg:w-1/3 rounded-2xl justify-center items-center p-4 ">
         <div className="mx-auto px-4 sm:container">
           <div className="border-stroke items-center justify-between border-b border-black md:flex">
             <div className=" mb-4 w-full">
@@ -23,7 +121,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+        <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
           <div className="col-span-10 relative ">
             <label
               htmlFor="password"
@@ -39,6 +137,7 @@ const page = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               "
               required
+              ref={passwordRef}
             />
             <div className="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
               {showPassword ? (
@@ -80,6 +179,7 @@ const page = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               "
               required
+              ref={confirmPasswordRef}
             />
             <div className="absolute inset-y-0 right-0 pr-3 pt-4 flex items-center justify-center text-sm leading-5">
               {showConfirmedPassword ? (
@@ -109,14 +209,22 @@ const page = () => {
           <div className="col-span-10  flex justify-center items-center sm:gap-4">
             <button
               onClick={() => router.push("/signin")}
-              className="inline-block shrink-0 rounded-md border border-blue-600 bg-white px-12 py-3 text-sm font-medium text-black transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+              className="inline-block shrink-0 mx-2 rounded-md border border-blue-600 bg-white px-8 lg:px-12 py-3 text-sm font-medium text-black transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
             >
               Cancel
             </button>
-            <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+            <button
+              type="submit"
+              className="inline-block shrink-0 mx-2 rounded-md border border-blue-600 bg-blue-600 px-4 lg:px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+            >
               Reset Password
             </button>
           </div>
+          {isError && <ErrorAlert error={error} message={" , Try again"} />}
+          {!passwordMatch && (
+            <ErrorAlert message={"Passwords do not match, Try again"} />
+          )}
+          {isSuccessful && <SuccessAlert message={message} />}
         </form>
       </div>
     </div>

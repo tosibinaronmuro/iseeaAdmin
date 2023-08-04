@@ -3,13 +3,11 @@ import React from "react";
 import Project from "@/components/project";
 
 const page = async () => {
+   // refactor to react-query and axios and include header + token gotten from state management for post,delete and create requests
   const res = await fetch("https://iseea.onrender.com/api/v1/projects", {
     cache: "no-store",
   });
   const data = await res.json();
-  const action = () => {
-    console.log("modal here!!!");
-  };
   return (
     <div>
       <PageHeader name={"Project"} />

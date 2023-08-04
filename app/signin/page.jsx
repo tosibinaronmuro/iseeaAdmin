@@ -15,6 +15,8 @@ const page = () => {
   const [isSuccessful, setisSuccessful] = useState(false);
   const [error, setError] = useState("");
   const [Name, setName] = useState("");
+
+
   const loginMutation = async ({ email, password }) => {
     const response = await axios.post(
       "https://iseea.onrender.com/api/v1/auth/login",
@@ -29,10 +31,14 @@ const page = () => {
     );
     return response.data;
   };
+
+
   const emailRef = useRef();
   const passwordRef = useRef();
   const mutation = useMutation(loginMutation, {
     onSuccess: (data) => {
+      // create loading spinner
+      //  store token in state management state and possibly frontend session storage?
       emailRef.current.value = "";
       passwordRef.current.value = "";
       setisSuccessful(true);

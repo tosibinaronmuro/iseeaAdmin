@@ -35,6 +35,7 @@ const page = () => {
       setisSuccessful(true);
       console.log(data);
       setMessage(data.msg);
+      // redirect to /signin ?
     },
     onError: (error) => {
       if (error.response && error.response.data) {

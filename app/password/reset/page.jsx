@@ -103,11 +103,6 @@ const page = () => {
         setPasswordMatch(true);
       }, 5000);
     }
-    if (isSuccessful) {
-      timeout = setTimeout(() => {
-        router.push("/signin");
-      }, 5000);
-    }
     return () => clearTimeout(timeout);
   }, [error, passwordMatch]);
 
@@ -217,10 +212,18 @@ const page = () => {
               Cancel
             </button>
             <button
-              type="submit"
+              // type="submit"
+              type={isSuccessful ? "" : "submit"}
+              onClick={
+               ()=>{
+                if(isSuccessful){
+                  router.push("/signin")
+                }
+               }
+              }
               className="inline-block shrink-0 mx-2 rounded-md border border-blue-600 bg-blue-600 px-4 lg:px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
             >
-              Reset Password
+             {isSuccessful?'Go to login' :"Reset Password"} 
             </button>
           </div>
           {isError && <ErrorAlert error={error} message={" , Try again"} />}

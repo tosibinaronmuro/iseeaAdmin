@@ -204,7 +204,7 @@ const page = () => {
                   >
                     Forgot password?
                   </a>
-                  .
+                  
                 </p>
 
                 <div className=" sm:flex sm:items-center sm:gap-4">
@@ -220,7 +220,7 @@ const page = () => {
                     <a href="/" className="text-blue-700 mx-2 underline">
                       Register
                     </a>
-                    .
+                    
                   </p>
                 </div>
               </div>

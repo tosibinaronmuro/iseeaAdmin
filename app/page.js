@@ -289,7 +289,7 @@ const signup = () => {
                   <a href="/signin" className="text-blue-700 mx-2 underline">
                     Log in
                   </a>
-                  .
+                  
                 </p>
               </div>
               {isError && <ErrorAlert error={error} message={" , Try again"} />  }

@@ -2,14 +2,10 @@
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-// import { Inter } from 'next/font/google'
-
-// const inter = Inter({ subsets: ['latin'] })
-
 export const metadata = {
-  title: "ISEEA",
+  title: "ISEEA Admin Dashboard",
   description:
-    "ISEEA is a non-profit, youth-centered hub promoting awareness on the importance of self-esteem, self-awareness, and the dangers of low-self-esteem in Nigeria through media, mentorship, partnership, advocacy programs, and impact projects in local communities.",
+    "Discover the ISEEA Admin Site - powered by Next.js, Axios, and Tailwind CSS. Seamlessly manage projects, impacts, reports, and team members through its intuitive interface. Connects to a robust backend built with Node.js, Express, and MongoDB.",
 };
 
 export default function RootLayout({ children }) {
